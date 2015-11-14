@@ -1,0 +1,46 @@
+
+<html>
+<link rel="stylesheet" href="additions.css">
+<link rel="stylesheet" href="contextMenu.css">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js"></script>
+ <script src="contextMenu.js"></script>
+  <script src="additions.js"></script>
+  <meta charset="utf-8"/>
+<body>
+<style>
+
+</style>
+<script>
+
+var MyProductArray = [{Id:1,name:"Патроны 7,62 для ПКП Печенег",price:5000,quantity:120,images_urls:["https://im1-tub-ru.yandex.net/i?id=dc3439abb44fe31702d6447a1c6adf15&n=33&h=190&w=253","/1.jpg"]},{Id:2,name:"Патроны для АК-12",price: 2000,quantity:5000,images_urls:["http://i2.guns.ru/forums/icons/forum_pictures/003517/3517902.jpg","2.jpg"]},{Id:3,name:"мелисса",price: 1000,quantity:5,images_urls:["http://dachnik.in.ua/wp-content/uploads/2012/07/4983d.jpg","3.jpg"]}];
+var myWeightArray = [10,20,30,40,50];
+var myAnimationCallback = function(eventType,target,TYPE_Of_Object)
+{
+	console.log(new Date(), "вызвано событие <" + eventType + "> для объекта <" + target.className + ">, тип объекта: <"+ TYPE_Of_Object + ">");
+}
+var myProcessCallBack = function(ResultArray)
+{
+	if(ResultArray.length==0)
+	{
+		console.log("Массив выбора добавок пуст!!!");
+		return;
+	}
+	console.log("поменялся результирующий массив выбора добавок! Содержание:");
+	console.log("------");
+	for(var i=0;i<ResultArray.length;i++)
+	{
+		console.log(i+") ID: "+ResultArray[i].Id+" Количество товара: "+ResultArray[i].Quantity);
+	}
+	console.log("------");
+}
+var myDataBaseCallBack = function(Id,type_of_callback)
+{
+	return 100;
+}
+var Add = new Additions(MyProductArray,myWeightArray,"<весь объект с добавками>","<карточка добавки>","<объект меню целиком>","<пункт меню>",myAnimationCallback,myProcessCallBack,myDataBaseCallBack);
+Add.displayAdditionsMenu(document.body);
+</script>
+
+
+ </body>
+</html>
