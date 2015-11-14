@@ -135,8 +135,15 @@
 				
 				
 				
-				var podlogka = document.getElementById("podlogka");
-				document.body.removeChild(podlogka);
+				try
+				{
+				  var podlogka = document.getElementById("podlogka");
+				  document.body.removeChild(podlogka);
+				}
+				catch(e)
+				{
+				  
+				}
 			}
 		});
 	}
@@ -160,6 +167,8 @@ ContextWeightMenu.prototype.displayMenuAtCursor = function(cursor_left,cursor_to
 	var podlogka = document.createElement("div");
 	podlogka.id = "podlogka";
 	document.body.appendChild(podlogka);
+	var thisRef = this.Menu_ref;
+	podlogka.addEventListener("click",function(event){var podlogka = document.getElementById("podlogka");document.body.removeChild(podlogka); thisRef.style.display="none"});
 	this.displayMenu();
 }
  
